@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 07:38:20 by mschaub           #+#    #+#             */
-/*   Updated: 2023/10/09 08:56:32 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/10/13 08:19:35 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ Form::Form(): _name("Default"), _signed(false), _gradeToSign(0), _gradeToExecute
 }
 
 Form::Form(std::string name, int gradeToSign, int gradeToExecute): _name(name), _signed(false), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute) {
-	std::cout << "Custom constructor" << std::endl;
+	std::cout << "Custom constructor: " << name << std::endl;
 	if (gradeToSign < 1 || gradeToExecute < 1)
 		throw Form::GradeTooHighException();
 	else if (gradeToSign > 150 || gradeToExecute > 150)

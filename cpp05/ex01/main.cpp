@@ -27,7 +27,6 @@ int main(void) {
 	std::cout << form2 << std::endl;
 
 	try {
-		form1.beSigned(bureaucrat1);
 		form3.beSigned(bureaucrat2);
 	}
 	catch (std::exception &e) {
@@ -49,6 +48,4 @@ int main(void) {
 	}
 	std::cout << form1 << std::endl;
 	std::cout << form2 << std::endl;
-
-
 }

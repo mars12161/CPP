@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 09:40:53 by mschaub           #+#    #+#             */
-/*   Updated: 2023/10/07 10:46:23 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/10/13 08:33:30 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,13 @@ int main(void) {
 	std::cout << r1 << std::endl;
 	PresidentialPardonForm p1("Donald");
 	std::cout << p1 << std::endl;
+
+    try {
+        b1.executeForm(s1);
+    }
+    catch (std::exception &e) {
+        std::cout << e.what() << std::endl;
+    }
 
 	try {
 		b1.signForm(s1);
