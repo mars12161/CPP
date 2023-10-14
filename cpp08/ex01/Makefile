@@ -1,6 +1,7 @@
 # Source
 
-SRC =	main.cpp
+SRC =	main.cpp \
+		Span.cpp \
 
 OBJS =	$(SRC:.cpp=.o)
 
@@ -10,7 +11,7 @@ CC = 	c++
 
 FLAGS =	-Wall -Wextra -Werror -std=c++98
 
-NAME =	easyfind
+NAME =	span
 
 # Removing
 
