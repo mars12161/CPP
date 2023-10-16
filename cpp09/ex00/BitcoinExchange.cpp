@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 09:47:09 by mschaub           #+#    #+#             */
-/*   Updated: 2023/10/16 11:54:40 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/10/16 13:02:56 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,33 +66,65 @@ bool BitcoinExchange::isValidDate(std::string date) {
     return (true);
 }
 
-bool BitcoinExchange::checkInput(std::string input) {
+std::string BitcoinExchange::findClosestDate(std::string date, std::string value) {
+    std::string closest = "";
+    std::map<std::string, double>::reverse_iterator it;
+    for (it = _database.rbegin(); it != _database.rend(); it++) {
+        if (it->first < date) {
+            std::ostringstream s;
+            s << it->second * std::strtod(value.c_str(), NULL);
+            closest += it->first + " => " + value  + " = " + s.str() + "\n";
+            break;
+        }
+    }
+    return (closest);
+}
+
+std::string BitcoinExchange::getValue(std::string row) {
+    std::string date = row.substr(0, row.find('|') - 1);
+    std::string value = row.substr(row.find('|') + 2);
+    std::string msg = "";
+    if (_database.find(date) == _database.end()) {
+        msg += findClosestDate(date, value);
+        return (msg);
+    }
+    for (std::map<std::string, double>::iterator it = _database.begin(); it != _database.end(); it++) {
+        if (it->first == date) {
+            std::ostringstream s;
+            s << it->second * std::strtod(value.c_str(), NULL);
+            msg += it->first + " => " + value + " = " + s.str() + "\n";
+        }
+    }
+    return (msg);
+}
+
+std::string BitcoinExchange::createOutput(std::string input) {
     std::ifstream file(input.c_str());
-    int count = 0;
-    if (!file.is_open())
-        return (false);
+    std::string output = "";
     std::string line;
     while (getline(file, line)) {
-        count++;
-        if (count == 1) {
-            if (line != "date | value")
-                return (false);
-        }
-        else {
-            if (line.find('|') == std::string::npos)
-                return (false);
-        }
         std::string key = line.substr(0, line.find('|') - 1);
         std::string value = line.substr(line.find('|') + 2);
-        if ((key.empty() || value.empty()) && count != 1) {
-            std::cout << 3 << std::endl;
-            return (false);
+        if (line.find("|") == std::string::npos) {
+            output += "Error: invalid format\n";
+            continue;
         }
-        if (!isValidDate(key) && count != 1)
-            return (false);
-        if ((std::strtod(value.c_str(), NULL) < 0 || std::strtod(value.c_str(), NULL) > 1000) && count != 1)
-            return (false);
+        if (!isValidDate(key) && line != "date | value") {
+            output += "Error: invalid date => " + key + "\n";
+            continue;
+        }
+        if ((key.empty() || value.empty()) && line != "date | value") {
+            output += "Error: invalid format\n";
+            continue;
+        }
+        double value_d = std::strtod(value.c_str(), NULL);
+        if ((value_d < 0 || value_d > 1000) && line != "date | value") {
+            output += "Error: invalid value => " + value + "\n";
+            continue;
+        }
+        if (line != "date | value")
+            output += getValue(line);
     }
     file.close();
-    return (true);
+    return (output);
 }
