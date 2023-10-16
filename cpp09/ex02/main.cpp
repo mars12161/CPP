@@ -27,4 +27,7 @@ int main(int argc, char **argv) {
     }
     PmergeMe pmerge;
     pmerge.fillVector(argc, argv);
+	pmerge.fillList(argc, argv);
+	pmerge.sortVector();
+	pmerge.sortList();
 }

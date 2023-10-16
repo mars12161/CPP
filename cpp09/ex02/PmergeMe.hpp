@@ -13,16 +13,17 @@
 #pragma once
 #include <iostream>
 #include <string>
-#include <queue>
+#include <list>
 #include <vector>
 #include <cstdlib>
 #include <algorithm>
+#include <ctime>
 
 
 
 class PmergeMe {
     private:
-        std::queue<int> _queue;
+        std::list<int> _list;
         std::vector<int> _vector;
     public:
         PmergeMe();
@@ -30,5 +31,9 @@ class PmergeMe {
         PmergeMe(PmergeMe const &src);
         PmergeMe &operator=(PmergeMe const &src);
         void fillVector(int argc, char **argv);
-        void fillQueue(int argc, char **argv);
+        void fillList(int argc, char **argv);
+		void printVector();
+		void printList();
+		void sortVector();
+		void sortList();
 };
