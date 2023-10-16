@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 07:47:50 by mschaub           #+#    #+#             */
-/*   Updated: 2023/10/14 07:59:04 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/10/16 10:35:26 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,5 @@ int main() {
         std::cout << *it << std::endl;
         ++it;
     }
-    //std::stack<int> s(mstack);
     return 0;
 }
