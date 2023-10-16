@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 15:17:35 by mschaub           #+#    #+#             */
-/*   Updated: 2023/10/16 15:52:51 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/10/16 21:14:52 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ static std::list<int> mergeList(std::list<int> &left, std::list<int> &right) {
 
 	while (!left.empty()) {
 		res.push_back(right.front());
-		right.erase(right.begin());
+		left.erase(left.begin());
 	}
 
 	while (!right.empty()) {
