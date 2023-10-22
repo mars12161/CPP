@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 16:51:20 by mschaub           #+#    #+#             */
-/*   Updated: 2023/10/10 17:03:59 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/10/22 12:49:37 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,17 @@ int main(void) {
 
 	// Process and print elements of intArray using the functor
 	std::cout << "Processing intArray: " << std::endl;
-	iter(intArray, PrintElement());
+	iter(intArray, 5,PrintElement());
 	std::cout << std::endl;
 
 	// Process and print elements of doubleArray using the functor
 	std::cout << "Processing doubleArray: " << std::endl;
-	iter(doubleArray, PrintElement());
+	iter(doubleArray, 5, PrintElement());
 	std::cout << std::endl;
 
 	// Process and print elements of factorialArray using the function
 	std::cout << "Processing factorialArray: " << std::endl;
-	iter(factorialArray, printFactorial<int>);
+	iter(factorialArray, 9,printFactorial<int>);
 	std::cout << std::endl;
 
 	return 0;

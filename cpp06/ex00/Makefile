@@ -5,6 +5,8 @@ SRC =	ScalarConverter.cpp \
 
 OBJS =	$(SRC:.cpp=.o)
 
+HEADER =	ScalarConverter.hpp
+
 # Compiling
 
 CC = 	c++
@@ -27,7 +29,7 @@ RED = \e[91;5;118m
 
 all : $(NAME)
 
-$(NAME) : $(OBJS)
+$(NAME) : $(OBJS) $(HEADER)
 	@$(CC) $(FLAGS) $(OBJS) -o $(NAME)
 	@printf "$(GREEN)Compiling done\n"
 

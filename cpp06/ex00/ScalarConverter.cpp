@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 15:43:26 by mschaub           #+#    #+#             */
-/*   Updated: 2023/10/08 13:45:58 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/10/21 07:39:02 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ bool ScalarConverter::intMinMax() {
 	char *end;
 	long num = std::strtol(_str.c_str(), &end, 10);
 
-	if (num > INT_MAX || num < INT_MIN)
+	if (num > std::numeric_limits<int>::max() || num < std::numeric_limits<int>::min())
 		return false;
 	return true;
 }

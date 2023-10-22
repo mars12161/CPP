@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 15:38:00 by mschaub           #+#    #+#             */
-/*   Updated: 2023/10/08 13:41:25 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/10/21 07:40:02 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <iostream>
 #include <string>
 #include <cstdlib>
-#include <climits>
+#include <limits>
 
 enum e_type {
 	CHAR,
