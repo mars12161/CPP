@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 17:08:12 by mschaub           #+#    #+#             */
-/*   Updated: 2023/10/23 09:25:45 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/10/23 14:36:23 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ public:
     ~Array();
     Array<T> &operator=(Array<T> const &other);
     T &operator[](unsigned int index);
+    const T &operator[](unsigned int index) const;
     unsigned int size() const;
 
     class OutOfBoundsException: public std::exception {
@@ -86,6 +87,14 @@ Array<T> &Array<T>::operator=(Array<T> const &other) {
 
 template <class T>
 T &Array<T>::operator[](unsigned int index) {
+    if (index >= _size) {
+        throw OutOfBoundsException();
+    }
+    return _arr[index];
+}
+
+template <class T>
+const T &Array<T>::operator[](unsigned int index) const {
     if (index >= _size) {
         throw OutOfBoundsException();
     }
