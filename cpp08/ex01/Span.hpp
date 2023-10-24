@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 06:57:31 by mschaub           #+#    #+#             */
-/*   Updated: 2023/10/14 07:32:24 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/10/24 13:48:52 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <vector>
 #include <cmath>
 #include <limits>
+#include <algorithm>
 
 class Span
 {

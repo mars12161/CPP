@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 06:57:41 by mschaub           #+#    #+#             */
-/*   Updated: 2023/10/14 07:33:38 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/10/24 13:56:56 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,29 +56,23 @@ void Span::addNumber(std::vector<int> vector, unsigned int size) {
 int Span::shortestSpan() {
     if (_filled <= 1)
         throw NotEnoughNumbersException();
+
+    std::sort(_arr.begin(), _arr.begin() + _filled);
+
     int shortest = std::numeric_limits<int>::max();
-    for (unsigned int i = 0; i < _filled; i++) {
-        for (unsigned int j = i + 1; j < _filled; j++) {
-            int diff = std::abs(_arr[i] - _arr[j]);
-            if (diff < shortest)
-                shortest = diff;
-        }
+    for (unsigned int i = 1; i < _filled; i++) {
+        int diff = _arr[i] - _arr[i - 1];
+        if (diff < shortest)
+            shortest = diff;
     }
-    return (shortest);
+    return shortest;
 }
+
 
 int Span::longestSpan() {
     if (_filled <= 1)
         throw NotEnoughNumbersException();
-    int longest = std::numeric_limits<int>::min();
-    for (unsigned int i = 0; i < _filled; i++) {
-        for (unsigned int j = i + 1; j < _filled; j++) {
-            int diff = std::abs(_arr[i] - _arr[j]);
-            if (diff > longest)
-                longest = diff;
-        }
-    }
-    return (longest);
+    return (*std::max_element(_arr.begin(), _arr.end()) - *std::min_element(_arr.begin(), _arr.end()));
 }
 
 const char *Span::FullException::what() const throw() {

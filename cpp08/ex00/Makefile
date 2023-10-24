@@ -3,6 +3,7 @@
 SRC =	main.cpp
 
 OBJS =	$(SRC:.cpp=.o)
+HEADER = easyfind.hpp
 
 # Compiling
 
@@ -26,7 +27,7 @@ RED = \e[91;5;118m
 
 all : $(NAME)
 
-$(NAME) : $(OBJS)
+$(NAME) : $(OBJS) $(HEADER)
 	@$(CC) $(FLAGS) $(OBJS) -o $(NAME)
 	@printf "$(GREEN)Compiling done\n"
 
