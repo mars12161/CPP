@@ -12,6 +12,21 @@
 
 #include "easyfind.hpp"
 #include <vector>
+#include <list>
+
+template <typename T>
+typename T::iterator easyfind(T& container, int n) {
+    std::cout << "looking for value " << n << std::endl;
+    typename T::iterator result = std::find(container.begin(), container.end(), n);
+    if (result != container.end())
+        return result;
+    else
+        throw ValueNotFound();
+}
+
+const char *ValueNotFound::what() const throw() {
+            return ("Value not found");
+}
 
 
 int main(void) {
@@ -22,10 +37,17 @@ int main(void) {
     numbers.push_back(4);
     numbers.push_back(5);
 
+    std::list<int> num_list;
+    num_list.push_back(10);
+    num_list.push_back(500);
+    num_list.push_back(12);
+    num_list.push_back(460235);
+
     int val = 6;
+    int val2 = 460235;
     try {
         std::vector<int>::iterator result = easyfind(numbers, val);
-        std::cout << "Value " << *result << " exists in container\n";
+        std::cout << "Value " << *result << " exists in container" << std::endl;
     }
     catch (std::exception &e) {
         std::cout << e.what() << std::endl;
@@ -34,7 +56,23 @@ int main(void) {
     val = 4;
     try {
         std::vector<int>::iterator result = easyfind(numbers, val);
-        std::cout << "Value " << *result << " exists in container\n";
+        std::cout << "Value " << *result << " exists in container" << std::endl;
+    }
+    catch (std::exception &e) {
+        std::cout << e.what() << std::endl;
+    }
+
+    try {
+        std::list<int>::iterator result = easyfind(num_list, val);
+        std::cout << "Value " << *result << " esists in container" << std::endl;
+    }
+    catch (std::exception &e) {
+        std::cout << e.what() << std::endl;
+    }
+
+    try {
+        std::list<int>::iterator result = easyfind(num_list, val2);
+        std::cout << "Value " << *result << " esists in container" << std::endl;
     }
     catch (std::exception &e) {
         std::cout << e.what() << std::endl;

@@ -6,17 +6,15 @@
 /*   By: mschaub <mschaub@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 06:57:41 by mschaub           #+#    #+#             */
-/*   Updated: 2023/10/24 13:56:56 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/10/27 12:34:03 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
 
-Span::Span() : _N(0), _filled(0), _arr(_N) {
+Span::Span(unsigned int n) : _n(n) {
 }
 
-Span::Span(unsigned int N) : _N(N), _filled(0), _arr(_N) {
-}
 
 Span::Span(Span const &copy) {
     *this = copy;
@@ -26,53 +24,49 @@ Span::~Span() {
 }
 
 Span &Span::operator=(Span const &copy) {
-    if (this != &copy)
-    {
-        _N = copy._N;
-        _filled = copy._filled;
-        _arr = std::vector<int>(_N);
-        for (unsigned int i = 0; i < _filled; i++)
-            _arr[i] = copy._arr[i];
+    if (this != &copy) {
+        _n = copy._n;
+        _arr = copy._arr;
     }
     return (*this);
 }
 
 void Span::addNumber(int num) {
-    if (_filled >= _N)
+    if (_arr.size() >= _n)
         throw FullException();
-    _arr[_filled] = num;
-    _filled++;
+    _arr.push_back(num);
 }
 
-void Span::addNumber(std::vector<int> vector, unsigned int size) {
-    if (_filled + size > _N)
+void Span::addNumber(std::list<int> list, unsigned int size) {
+    if (_arr.size() + size > _n)
         throw FullException();
-    for (unsigned int i = 0; i < size; i++) {
-        _arr[_filled] = vector[i];
-        _filled++;
-    }
+    _arr.insert(_arr.end(), list.begin(), list.end());
 }
 
 int Span::shortestSpan() {
-    if (_filled <= 1)
+    if (_arr.size() <= 1)
         throw NotEnoughNumbersException();
 
-    std::sort(_arr.begin(), _arr.begin() + _filled);
-
     int shortest = std::numeric_limits<int>::max();
-    for (unsigned int i = 1; i < _filled; i++) {
-        int diff = _arr[i] - _arr[i - 1];
-        if (diff < shortest)
-            shortest = diff;
+    for (std::list<int>::iterator it = _arr.begin(); it != _arr.end(); it++) {
+        for (std::list<int>::iterator it2 = _arr.begin(); it2 != _arr.end(); it2++) {
+            if (it != it2) {
+                int diff = std::abs(*it - *it2);
+                if (diff < shortest)
+                    shortest = diff;
+            }
+        }
     }
+
     return shortest;
 }
 
 
 int Span::longestSpan() {
-    if (_filled <= 1)
+    if (_arr.size() <= 1)
         throw NotEnoughNumbersException();
     return (*std::max_element(_arr.begin(), _arr.end()) - *std::min_element(_arr.begin(), _arr.end()));
+
 }
 
 const char *Span::FullException::what() const throw() {
@@ -83,21 +77,16 @@ const char *Span::NotEnoughNumbersException::what() const throw() {
     return ("Not enough numbers in Span");
 }
 
-int Span::getN() const {
-    return (_N);
-}
-
-int Span::getFilled() const {
-    return (_filled);
-}
-
-std::vector<int> Span::getArr() const {
-    return (_arr);
+const std::list<int>* Span::getArr() const {
+    return (&_arr);
 }
 
 std::ostream &operator<<(std::ostream &out, Span const &span) {
-    out << "Span with " << span.getFilled() << " of " << span.getN() << " numbers: ";
-    for (int i = 0; i < span.getFilled(); i++)
-        out << span.getArr()[i] << " ";
+    std::list<int>::const_iterator it = span.getArr()->begin();
+    std::list<int>::const_iterator ite = span.getArr()->end();
+    while (it != ite) {
+        out << *it << " ";
+        it++;
+    }
     return (out);
 }

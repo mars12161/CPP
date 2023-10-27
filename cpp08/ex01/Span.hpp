@@ -6,13 +6,13 @@
 /*   By: mschaub <mschaub@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 06:57:31 by mschaub           #+#    #+#             */
-/*   Updated: 2023/10/24 13:48:52 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/10/27 12:18:28 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #include <iostream>
-#include <vector>
+#include <list>
 #include <cmath>
 #include <limits>
 #include <algorithm>
@@ -20,20 +20,17 @@
 class Span
 {
     private:
-        unsigned int _N;
-        unsigned int _filled;
-        std::vector<int> _arr;
+        long unsigned int _n;
+        std::list<int> _arr;
         Span();
     public:
-        Span(unsigned int N);
+        Span(unsigned int n);
         Span(Span const &copy);
         ~Span();
         Span &operator=(Span const &copy);
-        int getN() const;
-        int getFilled() const;
-        std::vector<int> getArr() const;
+        const std::list<int>* getArr() const;
         void addNumber(int num);
-        void addNumber(std::vector<int> vector, unsigned int size);
+        void addNumber(std::list<int> list, unsigned int size);
         int shortestSpan();
         int longestSpan();
 

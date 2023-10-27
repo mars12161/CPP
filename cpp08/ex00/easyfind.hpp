@@ -11,24 +11,17 @@
 /* ************************************************************************** */
 
 #pragma once
+
 #include <iostream>
 #include <algorithm>
+#include <exception>
 
 
 class ValueNotFound : public std::exception
 {
-public:
-    virtual const char *what() const throw() {
-        return ("Value not found");
-    }
+    public:
+        virtual const char *what() const throw();
 };
 
 template <typename T>
-typename T::iterator easyfind(T& container, int n) {
-    std::cout << "looking for value " << n << std::endl;
-    typename T::iterator result = std::find(container.begin(), container.end(), n);
-    if (result != container.end())
-        return result;
-    else
-        throw ValueNotFound();
-}
+typename T::iterator easyfind(T& container, int n);
