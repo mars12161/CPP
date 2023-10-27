@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 06:57:18 by mschaub           #+#    #+#             */
-/*   Updated: 2023/10/27 13:26:16 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/10/27 13:44:06 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,6 @@ int main(void) {
      srand(time(NULL));
      for (int i = 0; i < 20000; i++) {
          int value = 1 + (rand());
-         if (value == 0)
-             std::cout << "WRONG" << std::endl;
          try {
              sp3.addNumber(value);
          }
