@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 06:57:18 by mschaub           #+#    #+#             */
-/*   Updated: 2023/10/27 13:44:06 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/10/29 10:52:07 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,11 @@ int main(void) {
         std::cout << e.what() << std::endl;
     }
 
-     Span sp3 = Span(20000);
+     Span sp3 = Span(20);
 
      srand(time(NULL));
-     for (int i = 0; i < 20000; i++) {
-         int value = 1 + (rand());
+     for (int i = 0; i < 20; i++) {
+         int value = 1 + (rand() % 100);
          try {
              sp3.addNumber(value);
          }
@@ -70,5 +70,6 @@ int main(void) {
      std::cout << "Biggest element in sp3: " << biggestNumber << std::endl;
      std::cout << "Shortest span: " << sp3.shortestSpan() << std::endl;
      std::cout << "Longest span: " << sp3.longestSpan() << std::endl;
+     std::cout << sp3 << std::endl;
 
 }

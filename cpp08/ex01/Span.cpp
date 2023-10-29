@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 06:57:41 by mschaub           #+#    #+#             */
-/*   Updated: 2023/10/27 12:34:03 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/10/29 10:51:09 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,20 @@ int Span::shortestSpan() {
 int Span::longestSpan() {
     if (_arr.size() <= 1)
         throw NotEnoughNumbersException();
-    return (*std::max_element(_arr.begin(), _arr.end()) - *std::min_element(_arr.begin(), _arr.end()));
+    int longest = 0;
 
+    std::list<int>::iterator prev = _arr.begin();
+    std::list<int>::iterator curr = _arr.begin();
+    curr++;
+    while (curr != _arr.end()) {
+        int diff = std::abs(*curr - *prev);
+        if (diff > longest)
+            longest = diff;
+        prev++;
+        curr++;
+    }
+
+    return longest;
 }
 
 const char *Span::FullException::what() const throw() {
