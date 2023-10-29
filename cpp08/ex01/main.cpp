@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 06:57:18 by mschaub           #+#    #+#             */
-/*   Updated: 2023/10/29 10:52:07 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/10/29 14:09:50 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int main(void) {
     Span sp = Span(5);
     try {
-        sp.addNumber(5);
+        sp.addNumber(6);
         sp.addNumber(3);
         sp.addNumber(17);
         sp.addNumber(9);

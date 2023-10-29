@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 06:57:41 by mschaub           #+#    #+#             */
-/*   Updated: 2023/10/29 10:51:09 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/10/29 14:06:57 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,16 @@ int Span::shortestSpan() {
         throw NotEnoughNumbersException();
 
     int shortest = std::numeric_limits<int>::max();
-    for (std::list<int>::iterator it = _arr.begin(); it != _arr.end(); it++) {
-        for (std::list<int>::iterator it2 = _arr.begin(); it2 != _arr.end(); it2++) {
-            if (it != it2) {
-                int diff = std::abs(*it - *it2);
-                if (diff < shortest)
-                    shortest = diff;
-            }
-        }
+
+    std::list<int>::iterator prev = _arr.begin();
+    std::list<int>::iterator curr = _arr.begin();
+    curr++;
+    while (curr != _arr.end()) {
+        int diff = std::abs(*curr - *prev);
+        if (diff < shortest)
+            shortest = diff;
+        prev++;
+        curr++;
     }
 
     return shortest;
