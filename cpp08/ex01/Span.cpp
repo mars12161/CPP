@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 06:57:41 by mschaub           #+#    #+#             */
-/*   Updated: 2023/10/29 14:06:57 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/10/30 10:36:34 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,7 @@ int Span::shortestSpan() {
     curr++;
     while (curr != _arr.end()) {
         int diff = std::abs(*curr - *prev);
-        if (diff < shortest)
-            shortest = diff;
+        shortest = std::min(shortest, diff);
         prev++;
         curr++;
     }
@@ -74,8 +73,7 @@ int Span::longestSpan() {
     curr++;
     while (curr != _arr.end()) {
         int diff = std::abs(*curr - *prev);
-        if (diff > longest)
-            longest = diff;
+        longest = std::max(longest, diff);
         prev++;
         curr++;
     }

@@ -6,14 +6,13 @@
 /*   By: mschaub <mschaub@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 06:57:31 by mschaub           #+#    #+#             */
-/*   Updated: 2023/10/29 13:57:20 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/10/30 10:36:37 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #include <iostream>
 #include <list>
-#include <cmath>
 #include <limits>
 #include <algorithm>
 
@@ -22,7 +21,6 @@ class Span
     private:
         long unsigned int _n;
         std::list<int> _arr;
-        Span();
     public:
         Span(unsigned int n);
         Span(Span const &copy);

@@ -10,7 +10,7 @@ HEADER = Span.hpp
 
 CC = 	c++
 
-FLAGS =	-Wall -Wextra -Werror -std=c++98
+FLAGS =	-Wall -Wextra -Werror #-std=c++98
 
 NAME =	span
 

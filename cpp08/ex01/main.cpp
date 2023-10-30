@@ -6,11 +6,12 @@
 /*   By: mschaub <mschaub@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 06:57:18 by mschaub           #+#    #+#             */
-/*   Updated: 2023/10/29 14:09:50 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/10/30 10:32:31 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
+#include <list>
 
 int main(void) {
     Span sp = Span(5);
