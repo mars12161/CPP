@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 06:57:41 by mschaub           #+#    #+#             */
-/*   Updated: 2023/10/30 10:36:34 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/10/30 11:02:24 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,37 +48,23 @@ int Span::shortestSpan() {
         throw NotEnoughNumbersException();
 
     int shortest = std::numeric_limits<int>::max();
-
-    std::list<int>::iterator prev = _arr.begin();
-    std::list<int>::iterator curr = _arr.begin();
-    curr++;
-    while (curr != _arr.end()) {
-        int diff = std::abs(*curr - *prev);
-        shortest = std::min(shortest, diff);
-        prev++;
-        curr++;
+    for (std::list<int>::iterator it = _arr.begin(); it != _arr.end(); it++) {
+        for (std::list<int>::iterator it2 = _arr.begin(); it2 != _arr.end(); it2++) {
+            if (it != it2) {
+                int diff = std::abs(*it - *it2);
+                if (diff < shortest)
+                    shortest = diff;
+            }
+        }
     }
-
-    return shortest;
+    return (shortest);
 }
 
 
 int Span::longestSpan() {
     if (_arr.size() <= 1)
         throw NotEnoughNumbersException();
-    int longest = 0;
-
-    std::list<int>::iterator prev = _arr.begin();
-    std::list<int>::iterator curr = _arr.begin();
-    curr++;
-    while (curr != _arr.end()) {
-        int diff = std::abs(*curr - *prev);
-        longest = std::max(longest, diff);
-        prev++;
-        curr++;
-    }
-
-    return longest;
+    return (*std::max_element(_arr.begin(), _arr.end()) - *std::min_element(_arr.begin(), _arr.end()));
 }
 
 const char *Span::FullException::what() const throw() {
