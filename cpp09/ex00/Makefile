@@ -3,6 +3,8 @@
 SRC =	main.cpp \
 		BitcoinExchange.cpp \
 
+HEADERS = BitcoinExchange.hpp
+
 OBJS =	$(SRC:.cpp=.o)
 
 # Compiling
@@ -27,7 +29,7 @@ RED = \e[91;5;118m
 
 all : $(NAME)
 
-$(NAME) : $(OBJS)
+$(NAME) : $(OBJS) $(HEADERS)
 	@$(CC) $(FLAGS) $(OBJS) -o $(NAME)
 	@printf "$(GREEN)Compiling done\n"
 

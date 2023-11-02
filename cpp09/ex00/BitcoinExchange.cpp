@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 09:47:09 by mschaub           #+#    #+#             */
-/*   Updated: 2023/10/16 13:02:56 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/11/02 19:58:50 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void BitcoinExchange::fillDatabase() {
 }
 
 bool BitcoinExchange::isValidDate(std::string date) {
-    if (date.length() != 10)
+	if (date.length() != 10)
         return (false);
     if (date[4] != '-' || date[7] != '-')
         return (false);
@@ -106,11 +106,11 @@ std::string BitcoinExchange::createOutput(std::string input) {
         std::string key = line.substr(0, line.find('|') - 1);
         std::string value = line.substr(line.find('|') + 2);
         if (line.find("|") == std::string::npos) {
-            output += "Error: invalid format\n";
+            output += "Error: bad input => " + key + "\n";
             continue;
         }
         if (!isValidDate(key) && line != "date | value") {
-            output += "Error: invalid date => " + key + "\n";
+            output += "Error: bad input => " + key + "\n";
             continue;
         }
         if ((key.empty() || value.empty()) && line != "date | value") {
@@ -118,10 +118,14 @@ std::string BitcoinExchange::createOutput(std::string input) {
             continue;
         }
         double value_d = std::strtod(value.c_str(), NULL);
-        if ((value_d < 0 || value_d > 1000) && line != "date | value") {
-            output += "Error: invalid value => " + value + "\n";
+        if (value_d < 0  && line != "date | value") {
+            output += "Error: not a positive number.\n";
             continue;
         }
+		else if (value_d > 1000 && line != "date | value") {
+			output += "Error: number too big.\n";
+			continue;
+		}
         if (line != "date | value")
             output += getValue(line);
     }

@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 09:43:21 by mschaub           #+#    #+#             */
-/*   Updated: 2023/10/27 14:30:37 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/11/02 19:40:49 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int main(int argc, char **argv)
 {
     if (argc != 2)
     {
-        std::cout << "Usage: ./btc <input file>" << std::endl;
+        std::cout << "Error: could not open file." << std::endl;
         return (1);
     }
     BitcoinExchange exchange;
