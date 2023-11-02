@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 13:32:18 by mschaub           #+#    #+#             */
-/*   Updated: 2023/10/16 14:21:38 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/11/02 20:08:52 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int main(int argc, char **argv) {
     }
     RPN rpn(argv[1]);
     if (!rpn.isValid()) {
-        std::cout << "Invalid expression" << std::endl;
+        std::cout << "Error" << std::endl;
         return (1);
     }
     rpn.parse();

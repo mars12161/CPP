@@ -20,7 +20,6 @@ class RPN {
     private:
         std::string _expr;
         int _result;
-        bool _is_valid;
         std::stack<int> _stack;
     public:
         RPN(std::string expr);

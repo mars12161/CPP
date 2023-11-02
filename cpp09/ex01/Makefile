@@ -4,6 +4,7 @@ SRC =	main.cpp \
 		RPN.cpp \
 
 OBJS =	$(SRC:.cpp=.o)
+HEADERS =	RPN.hpp
 
 # Compiling
 
@@ -27,7 +28,7 @@ RED = \e[91;5;118m
 
 all : $(NAME)
 
-$(NAME) : $(OBJS)
+$(NAME) : $(OBJS) $(HEADERS)
 	@$(CC) $(FLAGS) $(OBJS) -o $(NAME)
 	@printf "$(GREEN)Compiling done\n"
 
