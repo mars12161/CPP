@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 15:23:32 by mschaub           #+#    #+#             */
-/*   Updated: 2023/10/16 15:52:18 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/11/03 18:08:20 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,17 @@ int main(int argc, char **argv) {
     }
     for (int i = 1; i < argc; i++) {
         for (int j = 0; argv[i][j]; j++) {
-            if (!isdigit(argv[i][j])) {
+            if (!isdigit(argv[i][j]) && argv[i][j] != ' ') {
                 std::cout << "Invalid input" << std::endl;
                 return (1);
             }
         }
     }
     PmergeMe pmerge;
-    pmerge.fillVector(argc, argv);
-	pmerge.fillList(argc, argv);
+    if (!pmerge.fillVector(argc, argv))
+		return (1);
+	if (!pmerge.fillList(argc, argv))
+		return (1);
 	pmerge.sortVector();
 	pmerge.sortList();
 }

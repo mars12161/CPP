@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 15:17:19 by mschaub           #+#    #+#             */
-/*   Updated: 2023/10/16 15:54:09 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/11/03 17:24:47 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ class PmergeMe {
         ~PmergeMe();
         PmergeMe(PmergeMe const &src);
         PmergeMe &operator=(PmergeMe const &src);
-        void fillVector(int argc, char **argv);
-        void fillList(int argc, char **argv);
+        int fillVector(int argc, char **argv);
+        int fillList(int argc, char **argv);
 		void printVector();
 		void printList();
 		void sortVector();

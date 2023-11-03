@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 15:17:35 by mschaub           #+#    #+#             */
-/*   Updated: 2023/10/16 21:14:52 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/11/03 17:31:06 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,28 +29,30 @@ PmergeMe &PmergeMe::operator=(PmergeMe const &src) {
     return (*this);
 }
 
-void PmergeMe::fillVector(int argc, char **argv) {
+int PmergeMe::fillVector(int argc, char **argv) {
     for (int i = 1; i < argc; i++) {
         if (std::find(_vector.begin(), _vector.end(), std::atoi(argv[i])) == _vector.end()) {
             _vector.push_back(std::atoi(argv[i]));
         }
         else {
             std::cout << "Duplicate number" << std::endl;
-            return ;
+            return 0;
         }
     }
+	return 1;
 }
 
-void PmergeMe::fillList(int argc, char **argv) {
+int PmergeMe::fillList(int argc, char **argv) {
 	for (int i = 1; i < argc; i++) {
 		if (std::find(_list.begin(), _list.end(), std::atoi(argv[i])) == _list.end()) {
 			_list.push_back(std::atoi(argv[i]));
 		}
 		else {
 			std::cout << "Duplicate number" << std::endl;
-			return ;
+			return 0;
 		}
 	}
+	return 1;
 }
 
 void PmergeMe::printVector() {
@@ -106,7 +108,7 @@ static std::list<int> mergeList(std::list<int> &left, std::list<int> &right) {
 	}
 
 	while (!left.empty()) {
-		res.push_back(right.front());
+		res.push_back(left.front());
 		left.erase(left.begin());
 	}
 
